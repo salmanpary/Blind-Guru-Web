@@ -93,9 +93,9 @@
 }
 
 .player{
-  font-family: var(--tertiary-font);
-  font-size: 20px;
-  font-weight:400 ;
+  font-family: var(--tertiary-font) !important;
+  font-size: 20px !important;
+  font-weight:400 !important;
   color: #FFFFFF;
 }
 
