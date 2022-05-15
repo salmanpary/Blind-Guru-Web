@@ -10,7 +10,7 @@ Team Name : <b>Fin-eazy</b>
 
 ## Project Description
 
-Developing An App for blind people for helping them read SMS,Whatsapp Messages,Facebook Captions,Twitter Feeds,etc...
+Developing A Web-App for blind people for helping them read SMS,Whatsapp Messages,Facebook Captions,Twitter Feeds,etc...
 
 ## Team Members:
 
