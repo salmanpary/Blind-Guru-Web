@@ -1,5 +1,7 @@
 # Blind Guru - Fin-eazy - Beach Hack 4
 
+![Logo](https://github.com/jaison080/Blind-Guru-Web/blob/master/images/logo.png)
+
 ## Live Demo
 
 Link : http://blind-guru.netlify.app/
