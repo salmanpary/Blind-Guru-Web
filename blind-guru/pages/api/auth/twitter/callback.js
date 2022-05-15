@@ -11,8 +11,8 @@ export default async function handler (req, res) {
       
       const authHeader = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
       // const authHeader = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
-      res.send(authHeader);
-      return;
+      // res.send(authHeader);
+      // return;
       const { code } = req.query;
         const response = await axios.post('https://api.twitter.com/2/oauth2/token',
             {},
