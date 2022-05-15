@@ -1,9 +1,23 @@
 import Footer from "@components/Footer"
 import Head from "next/head"
 import Router from 'next/router';
+import { getCookie } from 'cookies-next';
 
-function home()
+export async function getServerSideProps({ req, res }) {
+  const user = getCookie('user', { req, res});
+  console.log(user);
+  return {
+    props:{
+      user: user
+    }
+  }
+}
+
+function home(props)
 {
+    // const user = getCookie('user');
+    console.log(props);
+
     function Login(){
       Router.push('/api/auth/twitter/login');
     }
