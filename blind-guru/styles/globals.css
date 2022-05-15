@@ -16,6 +16,7 @@
   --bg-color: #E6F4F4;
   --primary-color: #0B8B8B;
   --secondary-color: #3c9b9b;
+  --tertiary-color: #044d4d;
   --text-card: #FFFFFF;
   --text-main: #333333;
 }
@@ -83,6 +84,24 @@
 }
 
 .login-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.logout-btn {
+  background-color: var(--tertiary-color);
+  border-radius: 20px;
+  margin-top:40%;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  font-family: var(--tertiary-font);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+
+.logout-btn:hover {
   background-color: var(--secondary-color);
 }
 

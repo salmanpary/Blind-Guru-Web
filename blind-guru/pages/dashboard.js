@@ -11,11 +11,14 @@ import Typography from '@mui/material/Typography';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-
+import Router from 'next/router';
 
 function dashboard()
 {
      const theme = useTheme();
+     function Logout(){
+      Router.push('/api/auth/twitter/logout');
+    }
     return(
         <div className="container">
         <Head>
@@ -44,6 +47,7 @@ function dashboard()
           </IconButton>
         </Box>
     </Card>
+    <button className="logout-btn" onClick={Logout}>Logout</button>
             </div>
       </main>
       <Footer/>
