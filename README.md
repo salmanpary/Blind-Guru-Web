@@ -22,11 +22,8 @@ Developing A Web-App for blind people for helping them read SMS,Whatsapp Message
 
 ## 🔧 Project UI:
 
-![Project Diagram]()
-
-## 🔧 Project Output:
-
-![Project Output]()
+![Project Home](https://github.com/jaison080/Blind-Guru-Web/blob/master/images/img.png)
+![Project Dashboard](https://github.com/jaison080/Blind-Guru-Web/blob/master/images/img1.png)
 
 # Steps To Run the Project:
 
