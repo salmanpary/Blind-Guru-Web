@@ -7,26 +7,28 @@ import { getCookie } from 'cookies-next';
 
 export async function getServerSideProps({ req, res }) {
   const user = getCookie('user', { req, res});
-  return {
-    props:{
-      user:user
+  console.log(user);
+  if(user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard"
+      },
+      props:{
+        user:user
+      }
+    }
+  } else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/home"
+      },
+      props:{
+        user:user
+      }
     }
   }
-  // if(user) {
-  //   return {
-  //     redirect: {
-  //       permanent: false,
-  //       destination: "/dashboard"
-  //     }
-  //   }
-  // } else {
-  //   return {
-  //     redirect: {
-  //       permanent: false,
-  //       destination: "/home"
-  //     }
-  //   }
-  // }
 }
 export default function Home(props) {
   const user = getCookie('user');
