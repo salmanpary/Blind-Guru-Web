@@ -26,7 +26,7 @@ function dashboard()
       <main>
           < div className="landing">
             <div className="heading">Dashboard</div>
-            <Card sx={{ display: 'flex' ,marginTop:'40px',background:'#0B8B8B'}}>
+            <Card sx={{ display: 'flex' ,marginTop:'40px',background:'#0B8B8B',borderRadius:'20px'}}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" className='player'>
             Twitter Feeds
