@@ -1,10 +1,11 @@
 import Footer from "@components/Footer"
 import Head from "next/head"
+import Router from 'next/router';
 
 function home()
 {
     function Login(){
-
+      Router.push('/api/auth/twitter/login');
     }
     return(
         <div className="container">

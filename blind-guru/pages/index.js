@@ -1,8 +1,30 @@
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
-import LandingPage from './home'
+import LandingPage from './home';
+
+import { getCookie } from 'cookies-next';
+
+export async function getServerSideProps({ req, res }) {
+  const user = getCookie('user', { req, res});
+  if(user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard"
+      }
+    }
+  } else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/home"
+      }
+    }
+  }
+}
 export default function Home() {
+
   return (
   
     <div className="container">
