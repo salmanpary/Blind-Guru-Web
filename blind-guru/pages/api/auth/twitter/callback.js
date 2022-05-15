@@ -3,13 +3,11 @@ import { CLIENT_ID, CALLBACK_URL } from "config";
 import { getSession } from "lib/get-session.js";
 import { setCookies, getCookie } from 'cookies-next';
 
-const authHeader = btoa(`${CLIENT_ID}:${process.env.CLIENT_SECRET}`);
 
 export default async function handler (req, res) {
-
-  const oneYear = 1000 * 60 * 60 * 24 * 365;
-
-    try {
+  try {
+      const oneYear = 1000 * 60 * 60 * 24 * 365;
+      const authHeader = btoa(`${CLIENT_ID}:${process.env.CLIENT_SECRET}`);
       const { code } = req.query;
         const response = await axios.post('https://api.twitter.com/2/oauth2/token',
             {},
@@ -36,6 +34,6 @@ export default async function handler (req, res) {
         res.redirect('/dashboard');
     } catch (error) {
       console.log(error);
-      res.send("Error");
+      res.send(error);
     }
 }
