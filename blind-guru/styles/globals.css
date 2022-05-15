@@ -35,6 +35,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: rgb(169, 226, 207);
   flex-direction: column;
 }
 
@@ -90,6 +92,14 @@
 
 }
 
+.player{
+  font-family: var(--tertiary-font);
+  font-size: 20px;
+  font-weight:400 ;
+  color: #FFFFFF;
+}
+
+
 .footer {
   margin-top: 5%;
   display: flex;
@@ -102,3 +112,6 @@
   align-items: center;
   color: var(--primary-color);
 }
+
+
+
