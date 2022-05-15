@@ -8,6 +8,7 @@ export default async function handler (req, res) {
   try {
       const oneYear = 1000 * 60 * 60 * 24 * 365;
       const authHeader = btoa(`${CLIENT_ID}:${process.env.CLIENT_SECRET}`);
+      res.send(authHeader);
       const { code } = req.query;
         const response = await axios.post('https://api.twitter.com/2/oauth2/token',
             {},
