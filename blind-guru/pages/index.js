@@ -4,36 +4,20 @@ import Footer from '@components/Footer'
 import LandingPage from './home';
 
 import { getCookie } from 'cookies-next';
+import { useEffect } from 'react';
+import { useRouter } from "next/router";
 
-export async function getServerSideProps({ req, res }) {
-  const user = getCookie('user', { req, res});
-  console.log(user);
-  if(user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard"
-      },
-      props:{
-        user:user
-      }
-    }
-  } else {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/home"
-      },
-      props:{
-        user:user
-      }
-    }
-  }
-}
+
 export default function Home(props) {
-  const user = getCookie('user');
-  console.log("user", user);
-  console.log("props", props);
+  const router = useRouter();
+  useEffect(()=>{
+    const user = getCookie('user');
+    if(!user) {
+      router.push('/home');
+    } else {
+      router.push('/dashboard');
+    }
+  });
   return (
   
     <div className="container">
