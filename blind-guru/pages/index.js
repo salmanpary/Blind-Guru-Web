@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
-import LandingPage from './LandingPage'
+import LandingPage from './home'
 export default function Home() {
   return (
   
@@ -13,7 +13,6 @@ export default function Home() {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       </Head>
       <main>
-        <LandingPage/>
       </main>
       <Footer/>
     </div>
