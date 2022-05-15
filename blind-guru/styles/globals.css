@@ -93,7 +93,7 @@
 }
 
 .player{
-  font-family: var(--tertiary-font);
+  font-family: var(--tertiary-font) !important;
   font-size: 20px;
   font-weight:400 ;
   color: #FFFFFF;
