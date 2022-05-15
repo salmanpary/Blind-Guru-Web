@@ -1,6 +1,6 @@
-# Blind-Guru-Web - Fin-eazy - Beach Hack 4
+# Blind Guru - Fin-eazy - Beach Hack 4
 
-## Live Demo 
+## Live Demo
 
 Link : http://blind-guru.netlify.app/
 
@@ -15,18 +15,15 @@ Developing A Web-App for blind people for helping them read SMS,Whatsapp Message
 ## Team Members:
 
 1. [Mohammed Salman Ali Pary](https://github.com/salmanpary)
-2. [Jaison Dennis](https://github.com/jaison080) 
+2. [Jaison Dennis](https://github.com/jaison080)
 3. [Mayon Francis](https://github.com/Mayon-Francis)
 4. [Jagannath E Shahi](https://github.com/Jagannathes)
 5. [Vishnu R Potti](https://github.com/Vishnurr2k01)
 
 ## 🔧 Project UI:
 
-![Project Diagram]()
-
-## 🔧 Project Output:
-
-![Project Output]()
+![Project Home](https://github.com/jaison080/Blind-Guru-Web/blob/master/images/img.png)
+![Project Dashboard](https://github.com/jaison080/Blind-Guru-Web/blob/master/images/img1.png)
 
 # Steps To Run the Project:
 
