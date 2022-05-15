@@ -5,10 +5,14 @@ import { setCookies, getCookie } from 'cookies-next';
 
 
 export default async function handler (req, res) {
+  const CLIENT_SECRET = process.env.CLIENT_SECRET;
   try {
       const oneYear = 1000 * 60 * 60 * 24 * 365;
-      const authHeader = btoa(`${CLIENT_ID}:${process.env.CLIENT_SECRET}`);
+      
+      const authHeader = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
+      // const authHeader = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
       res.send(authHeader);
+      return;
       const { code } = req.query;
         const response = await axios.post('https://api.twitter.com/2/oauth2/token',
             {},
