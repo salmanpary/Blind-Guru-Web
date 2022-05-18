@@ -20,14 +20,25 @@
   --text-card: #FFFFFF;
   --text-main: #333333;
 }
+body{
+  background-color: rgb(169, 226, 207);
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
+}
 
-.container {
-  height: 100vh;
+.container1 {
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  background-color: rgb(169, 226, 207);
+  align-items: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -51,9 +62,7 @@
   letter-spacing: -0.02em;
   align-items: center;
   color: var(--primary-color);
-  padding-top: 3%;
 }
-
 .description {
   overflow-wrap: break-word;
   display: flex;
@@ -91,7 +100,7 @@
 .logout-btn {
   background-color: var(--tertiary-color);
   border-radius: 20px;
-  margin-top:40%;
+  margin-top:5%;
   border: none;
   color: white;
   padding: 10px 25px;
@@ -133,6 +142,7 @@
   align-items: center;
   color: var(--primary-color);
 }
+
 
 
 

@@ -13,6 +13,9 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Router from "next/router";
 import ProtectedRoute from "components/ProtectedRoute";
+import {TwitterTweetEmbed} from 'react-twitter-embed'
+import Image from 'next/image'
+import Logo from '../public/logo.svg'
 
 function dashboard() {
   const theme = useTheme();
@@ -29,38 +32,43 @@ function dashboard() {
         </Head>
         <main>
           <div className="landing">
-            <div className="heading">Dashboard</div>
+              <Image sx={{marginTop:'160px'}}
+      alt="Logo"
+      src={Logo}
+    />
+            <TwitterTweetEmbed
+  tweetId={'933354946111705097'}
+/>
             <Card
               sx={{
                 display: "flex",
-                marginTop: "40px",
+                marginTop: "15px",
                 background: "#0B8B8B",
                 borderRadius: "20px",
+                width:'300px',
+                height:'100px',
+                alignContent:'center',
+                justifyContent:'center'
               }}
             >
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                <Typography component="div" className="player">
-                  Twitter Feeds
-                </Typography>
-              </CardContent>
-              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous" sx={{ color: "#fff" }}>
+              <Box sx={{ display: "flex", justifyContent:'center',alignItems: "center"}}>
+                <IconButton aria-label="previous" sx={{ height: 60, width: 60,color: "#fff" }}>
                   {theme.direction === "rtl" ? (
                     <SkipNextIcon />
                   ) : (
-                    <SkipPreviousIcon />
+                    <SkipPreviousIcon sx={{height: 45, width: 45, color: "#fff" }}/>
                   )}
                 </IconButton>
                 <IconButton aria-label="play/pause">
                   <PlayArrowIcon
-                    sx={{ height: 38, width: 38, color: "#fff" }}
+                    sx={{ height: 60, width: 60, color: "#fff" }}
                   />
                 </IconButton>
-                <IconButton aria-label="next" sx={{ color: "#fff" }}>
+                <IconButton aria-label="next" sx={{height: 45, width: 45, color: "#fff" }}>
                   {theme.direction === "rtl" ? (
                     <SkipPreviousIcon />
                   ) : (
-                    <SkipNextIcon />
+                    <SkipNextIcon sx={{height: 45, width:45, color: "#fff" }}/>
                   )}
                 </IconButton>
               </Box>
