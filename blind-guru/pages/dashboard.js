@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from '@mui/icons-material/Pause';
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Router from "next/router";
 import ProtectedRoute from "components/ProtectedRoute";
@@ -20,18 +21,21 @@ import axios from "axios";
 import Speech from "speak-tts";
 function dashboard() {
   const [arr, setarr] = React.useState([]);
-  const [counter, setcounter] = React.useState(-1);
+  const [counter, setcounter] = React.useState(2);
   const [play, setplay] = React.useState(false);
   const[speech,setspeech]=React.useState(null)
-
+  
   React.useEffect(()=>{
-  setspeech( new Speech());
+  setspeech(new Speech());
   console.log(speech)
 
   },[])
 
   React.useEffect(() => {
+   
     axios.get("api/gettweets").then((res) => {
+     
+      console.log(res.data.data)
       setarr(res.data.data);
     });
   }, []);
@@ -42,11 +46,13 @@ function dashboard() {
   }
   const previous = () => {
    // will throw an exception if not browser supported
-   
+  if(counter==-1){
+    return
+  }
 
     speech
       .speak({
-        text: arr[0].text,
+        text: arr[counter].text,
       })
       .then(() => {
         console.log("Success !");
@@ -54,15 +60,15 @@ function dashboard() {
       .catch((e) => {
         console.error("An error occurred :", e);
       });
+      setcounter(counter-1)
   };
   const next = () => {
      // will throw an exception if not browser supported
-    console.log(speech)
-    console.log(speech.paused())
+    
 
     speech
       .speak({
-        text: arr[1].text,
+        text: arr[counter].text,
       })
       .then(() => {
         console.log("Success !");
@@ -70,15 +76,22 @@ function dashboard() {
       .catch((e) => {
         console.error("An error occurred :", e);
       });
+      setcounter(counter+1)
   };
-  const pause = () => {
-
+  const pause = (event) => {
+    event.preventDefault()
+   
     if(!speech.paused()){
-    speech.pause();}
+    speech.pause();
+    setplay(true)
+  
+  }
     else{
       speech.resume()
+      setplay(false)
     }
   };
+  
   return (
     <ProtectedRoute>
       <div className="container">
@@ -125,11 +138,17 @@ function dashboard() {
                     />
                   )}
                 </IconButton>
-                <IconButton aria-label="play/pause" onClick={pause}>
+               {play&&<IconButton aria-label="play/pause" onClick={pause}>
                   <PlayArrowIcon
                     sx={{ height: 60, width: 60, color: "#fff" }}
                   />
-                </IconButton>
+                </IconButton>}
+                {!play&&<IconButton aria-label="play/pause" onClick={pause}>
+                  <PauseIcon
+                    sx={{ height: 60, width: 60, color: "#fff" }}
+                  />
+                </IconButton>}
+                
                 <IconButton
                   aria-label="next"
                   sx={{ height: 45, width: 45, color: "#fff" }}
