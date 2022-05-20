@@ -20,15 +20,49 @@
   --text-card: #FFFFFF;
   --text-main: #333333;
 }
+body{
+  background-color: rgb(169, 226, 207);
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  
+}
 
-.container {
-  height: 100vh;
+.container1 {
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  background-color: rgb(169, 226, 207);
   align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.container1::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .landing {
@@ -51,9 +85,17 @@
   letter-spacing: -0.02em;
   align-items: center;
   color: var(--primary-color);
-  padding-top: 3%;
 }
-
+.heading1 {
+  display: flex;
+  justify-content: center;
+  font-family: var(--primary-font);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  align-items: center;
+  color: var(--primary-color);
+}
 .description {
   overflow-wrap: break-word;
   display: flex;
@@ -91,7 +133,7 @@
 .logout-btn {
   background-color: var(--tertiary-color);
   border-radius: 20px;
-  margin-top:40%;
+  margin-top:5%;
   border: none;
   color: white;
   padding: 10px 25px;
@@ -133,6 +175,7 @@
   align-items: center;
   color: var(--primary-color);
 }
+
 
 
 

@@ -2,7 +2,8 @@ import Footer from "@components/Footer"
 import Head from "next/head"
 import Router from 'next/router';
 import { getCookie } from 'cookies-next';
-
+import Image from 'next/image'
+import Logo from '../public/logo.svg'
 
 function home(props)
 {
@@ -20,6 +21,10 @@ function home(props)
       </Head>
       <main>
           < div className="landing">
+            <Image
+      alt="Logo"
+      src={Logo}
+    />
             <div className="heading">Blind-Guru</div>
             <button className="login-btn" onClick={Login}><i className="fa fa-twitter"></i>  Login With Twitter</button>
             <div className="description">Blind Guru is used to people worldwide as an accessible entry point into the world of Social Media. It enables speacially abled people to use twitter using voice commands making social media accessible for all. </div>
