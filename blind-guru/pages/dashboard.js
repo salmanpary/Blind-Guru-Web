@@ -24,32 +24,7 @@ import Speech from "speak-tts";
 
 
 const TweetEmbedder = React.memo(() => { return <TwitterTweetEmbed tweetId={"933354946111705097"} />}, () => true);
-const SpeechRecognizer = () => {
-  const commands = [
-    {
-        command: 'start',
-        callback: () => {alert("hello")},
-        isFuzzyMatch: true,
-      fuzzyMatchingThreshold: 0.2,
-    }
-]
-const {transcript,
-  listening,
-  resetTranscript,
-  browserSupportsSpeechRecognition} = useSpeechRecognition( { commands }) 
 
-
-  React.useEffect(() => {
-    SpeechRecognition.startListening({ continuous: true, interimResults: true });
-  
-  }, []);
-return (
-  <div>
-    {transcript}
-  </div>
-)
-
-}
 
 function dashboard() {
   const [arr, setarr] = React.useState([]);
@@ -125,6 +100,47 @@ function dashboard() {
       setplay(false)
     }
   };
+
+
+  const SpeechRecognizer = () => {
+    const commands = [
+      {
+          command: 'pause',
+          callback: () => {pause()},
+          isFuzzyMatch: true,
+        fuzzyMatchingThreshold: 0.2,
+      },
+      {
+        command: 'previous',
+        callback: () => {previous()},
+        isFuzzyMatch: true,
+      fuzzyMatchingThreshold: 0.2,
+    },
+      {
+        command: 'next',
+        callback: () => {next()},
+        isFuzzyMatch: true,
+      fuzzyMatchingThreshold: 0.2,
+    },
+
+  ]
+  const {transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition} = useSpeechRecognition( { commands }) 
+  
+  
+    React.useEffect(() => {
+      SpeechRecognition.startListening({ continuous: true, interimResults: true });
+    
+    }, []);
+  return (
+    <div>
+      {transcript}
+    </div>
+  )
+  
+  }
   
   return (
     <ProtectedRoute>
