@@ -19,9 +19,14 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-speech-recognition": "^3.9.1",
-    "react-twitter-embed": "^4.0.4"
+    "react-twitter-embed": "^4.0.4",
+    "speak-tts": "^2.0.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/plugin-transform-runtime": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.17.12",
     "@netlify/plugin-nextjs": "^4.6.0"
   }
 }
