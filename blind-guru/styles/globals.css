@@ -26,6 +26,7 @@ body{
   align-items: center;
   align-content: center;
   display: flex;
+  
 }
 
 .container1 {
@@ -34,12 +35,34 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.container1::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
 }
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .landing {
@@ -59,6 +82,16 @@ body{
   font-weight: 700;
   font-size: 70px;
   line-height: 82px;
+  letter-spacing: -0.02em;
+  align-items: center;
+  color: var(--primary-color);
+}
+.heading1 {
+  display: flex;
+  justify-content: center;
+  font-family: var(--primary-font);
+  font-weight: 700;
+  font-size: 30px;
   letter-spacing: -0.02em;
   align-items: center;
   color: var(--primary-color);

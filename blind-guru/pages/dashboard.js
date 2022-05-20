@@ -60,10 +60,16 @@ function dashboard() {
         </Head>
         <main>
           <div className="landing">
+
             <Image sx={{ marginTop: '160px' }}
               alt="Logo"
               src={Logo}
             />
+
+             
+
+            <div className="heading1">Dashboard</div>
+
             <TwitterTweetEmbed
               tweetId={'933354946111705097'}
             />
@@ -72,11 +78,12 @@ function dashboard() {
                 display: "flex",
                 marginTop: "15px",
                 background: "#0B8B8B",
-                borderRadius: "20px",
-                width: '300px',
-                height: '100px',
-                alignContent: 'center',
-                justifyContent: 'center'
+                borderRadius: 
+                width:'300px',
+                height:'90px',
+                alignContent:'center',
+                justifyContent:'center'
+
               }}
             >
               <Box sx={{ display: "flex", justifyContent: 'center', alignItems: "center" }}>
