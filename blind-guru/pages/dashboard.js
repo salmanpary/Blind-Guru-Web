@@ -13,15 +13,72 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Router from "next/router";
 import ProtectedRoute from "components/ProtectedRoute";
-import {TwitterTweetEmbed} from 'react-twitter-embed'
-import Image from 'next/image'
-import Logo from '../public/logo.svg'
-
+import { TwitterTweetEmbed } from "react-twitter-embed";
+import Image from "next/image";
+import Logo from "../public/logo.svg";
+import axios from "axios";
+import Speech from "speak-tts";
 function dashboard() {
+  const [arr, setarr] = React.useState([]);
+  const [counter, setcounter] = React.useState(-1);
+  const [play, setplay] = React.useState(false);
+  const[speech,setspeech]=React.useState(null)
+
+  React.useEffect(()=>{
+  setspeech( new Speech());
+  console.log(speech)
+
+  },[])
+
+  React.useEffect(() => {
+    axios.get("api/gettweets").then((res) => {
+      setarr(res.data.data);
+    });
+  }, []);
+
   const theme = useTheme();
   function Logout() {
     Router.push("/api/auth/twitter/logout");
   }
+  const previous = () => {
+   // will throw an exception if not browser supported
+   
+
+    speech
+      .speak({
+        text: arr[0].text,
+      })
+      .then(() => {
+        console.log("Success !");
+      })
+      .catch((e) => {
+        console.error("An error occurred :", e);
+      });
+  };
+  const next = () => {
+     // will throw an exception if not browser supported
+    console.log(speech)
+    console.log(speech.paused())
+
+    speech
+      .speak({
+        text: arr[1].text,
+      })
+      .then(() => {
+        console.log("Success !");
+      })
+      .catch((e) => {
+        console.error("An error occurred :", e);
+      });
+  };
+  const pause = () => {
+
+    if(!speech.paused()){
+    speech.pause();}
+    else{
+      speech.resume()
+    }
+  };
   return (
     <ProtectedRoute>
       <div className="container">
@@ -32,45 +89,58 @@ function dashboard() {
         </Head>
         <main>
           <div className="landing">
-              <Image 
-      alt="Logo"
-      src={Logo}
-    />
+            <Image alt="Logo" src={Logo} />
 
             <div className="heading1">Dashboard</div>
-            <TwitterTweetEmbed
-  tweetId={'933354946111705097'}
-/>
+            <TwitterTweetEmbed tweetId={"933354946111705097"} />
             <Card
               sx={{
                 display: "flex",
                 marginTop: "15px",
                 background: "#0B8B8B",
                 borderRadius: "20px",
-                width:'300px',
-                height:'90px',
-                alignContent:'center',
-                justifyContent:'center'
+                width: "300px",
+                height: "90px",
+                alignContent: "center",
+                justifyContent: "center",
               }}
             >
-              <Box sx={{ display: "flex", justifyContent:'center',alignItems: "center"}}>
-                <IconButton aria-label="previous" sx={{ height: 60, width: 60,color: "#fff" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <IconButton
+                  aria-label="previous"
+                  sx={{ height: 60, width: 60, color: "#fff" }}
+                  onClick={previous}
+                >
                   {theme.direction === "rtl" ? (
                     <SkipNextIcon />
                   ) : (
-                    <SkipPreviousIcon sx={{height: 45, width: 45, color: "#fff" }}/>
+                    <SkipPreviousIcon
+                      sx={{ height: 45, width: 45, color: "#fff" }}
+                    />
                   )}
                 </IconButton>
-                <IconButton aria-label="play/pause">
+                <IconButton aria-label="play/pause" onClick={pause}>
                   <PlayArrowIcon
                     sx={{ height: 60, width: 60, color: "#fff" }}
                   />
                 </IconButton>
-                <IconButton aria-label="next" sx={{height: 45, width: 45, color: "#fff" }}>
+                <IconButton
+                  aria-label="next"
+                  sx={{ height: 45, width: 45, color: "#fff" }}
+                  onClick={next}
+                >
                   {theme.direction === "rtl" ? (
                     <SkipPreviousIcon />
                   ) : (
-                    <SkipNextIcon sx={{height: 45, width:45, color: "#fff" }}/>
+                    <SkipNextIcon
+                      sx={{ height: 45, width: 45, color: "#fff" }}
+                    />
                   )}
                 </IconButton>
               </Box>
@@ -80,6 +150,7 @@ function dashboard() {
             </button>
           </div>
         </main>
+
         <Footer />
       </div>
     </ProtectedRoute>
