@@ -13,14 +13,42 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Router from "next/router";
 import ProtectedRoute from "components/ProtectedRoute";
-import {TwitterTweetEmbed} from 'react-twitter-embed'
+import { TwitterTweetEmbed } from 'react-twitter-embed'
 import Image from 'next/image'
 import Logo from '../public/logo.svg'
 
+import Speech from 'speak-tts'
+
+
+
 function dashboard() {
+
+  const [texttoread, settexttoread] = React.useState("Hello im fine");
+
+
   const theme = useTheme();
   function Logout() {
     Router.push("/api/auth/twitter/logout");
+  }
+
+  const playHandler = () => {
+    const speech = new Speech() // will throw an exception if not browser supported
+    if (speech.hasBrowserSupport()) { // returns a boolean
+      console.log("speech synthesis supported")
+    }
+
+    speech.speak({
+      text: `${texttoread}`,
+    }).then(() => {
+      console.log("Success !")
+    }).catch(e => {
+      console.error("An error occurred :", e)
+    })
+ 
+  }
+  const next = () => {
+    console.log('Hello');
+
   }
   return (
     <ProtectedRoute>
@@ -32,43 +60,44 @@ function dashboard() {
         </Head>
         <main>
           <div className="landing">
-              <Image sx={{marginTop:'160px'}}
-      alt="Logo"
-      src={Logo}
-    />
+            <Image sx={{ marginTop: '160px' }}
+              alt="Logo"
+              src={Logo}
+            />
             <TwitterTweetEmbed
-  tweetId={'933354946111705097'}
-/>
+              tweetId={'933354946111705097'}
+            />
             <Card
               sx={{
                 display: "flex",
                 marginTop: "15px",
                 background: "#0B8B8B",
                 borderRadius: "20px",
-                width:'300px',
-                height:'100px',
-                alignContent:'center',
-                justifyContent:'center'
+                width: '300px',
+                height: '100px',
+                alignContent: 'center',
+                justifyContent: 'center'
               }}
             >
-              <Box sx={{ display: "flex", justifyContent:'center',alignItems: "center"}}>
-                <IconButton aria-label="previous" sx={{ height: 60, width: 60,color: "#fff" }}>
+              <Box sx={{ display: "flex", justifyContent: 'center', alignItems: "center" }}>
+                <IconButton aria-label="previous" sx={{ height: 60, width: 60, color: "#fff" }}>
                   {theme.direction === "rtl" ? (
                     <SkipNextIcon />
                   ) : (
-                    <SkipPreviousIcon sx={{height: 45, width: 45, color: "#fff" }}/>
+                    <SkipPreviousIcon sx={{ height: 45, width: 45, color: "#fff" }} />
                   )}
                 </IconButton>
                 <IconButton aria-label="play/pause">
                   <PlayArrowIcon
                     sx={{ height: 60, width: 60, color: "#fff" }}
+                    onClick={playHandler}
                   />
                 </IconButton>
-                <IconButton aria-label="next" sx={{height: 45, width: 45, color: "#fff" }}>
+                <IconButton aria-label="next" sx={{ height: 45, width: 45, color: "#fff" }} onClick={next}>
                   {theme.direction === "rtl" ? (
                     <SkipPreviousIcon />
                   ) : (
-                    <SkipNextIcon sx={{height: 45, width:45, color: "#fff" }}/>
+                    <SkipNextIcon sx={{ height: 45, width: 45, color: "#fff" }} />
                   )}
                 </IconButton>
               </Box>
