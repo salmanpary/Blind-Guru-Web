@@ -24,19 +24,7 @@ import Speech from "speak-tts";
 
 
 const TweetEmbedder = React.memo(() => { return <TwitterTweetEmbed tweetId={"933354946111705097"} />}, () => true);
-
-
-function dashboard() {
-  const [arr, setarr] = React.useState([]);
-  const [counter, setcounter] = React.useState(2);
-  const [play, setplay] = React.useState(false);
-  const[speech,setspeech]=React.useState(null)
- 
-  console.log("speech")
-  React.useEffect(()=>{
-  setspeech(new Speech());
-  console.log(speech)
-  },[])
+const SpeechRecognizer = () => {
   const commands = [
     {
         command: 'start',
@@ -55,7 +43,26 @@ const {transcript,
     SpeechRecognition.startListening({ continuous: true, interimResults: true });
   
   }, []);
+return (
+  <div>
+    {transcript}
+  </div>
+)
 
+}
+
+function dashboard() {
+  const [arr, setarr] = React.useState([]);
+  const [counter, setcounter] = React.useState(2);
+  const [play, setplay] = React.useState(false);
+  const[speech,setspeech]=React.useState(null)
+ 
+  console.log("speech")
+  React.useEffect(()=>{
+  setspeech(new Speech());
+  console.log(speech)
+  },[])
+  
 
 
   React.useEffect(() => {
@@ -195,7 +202,7 @@ const {transcript,
             <button className="logout-btn" onClick={Logout}>
               Logout
             </button>
-            {transcript}
+          <SpeechRecognizer />
           </div>
         </main>
 
