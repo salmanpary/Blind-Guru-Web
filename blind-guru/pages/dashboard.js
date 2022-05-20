@@ -21,6 +21,12 @@ import Logo from '../public/logo.svg'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import axios from "axios";
 import Speech from "speak-tts";
+import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill';
+
+
+const appId = '9e9b7607-0cf2-4227-b5f2-6370045adb22';
+const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
+SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
 
 const TweetEmbedder = React.memo(() => { return <TwitterTweetEmbed tweetId={"933354946111705097"} />}, () => true);
@@ -103,6 +109,7 @@ function dashboard() {
 
 
   const SpeechRecognizer = () => {
+    
     const commands = [
       {
           command: 'pause',
