@@ -63,6 +63,16 @@ body{
   align-items: center;
   color: var(--primary-color);
 }
+.heading1 {
+  display: flex;
+  justify-content: center;
+  font-family: var(--primary-font);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  align-items: center;
+  color: var(--primary-color);
+}
 .description {
   overflow-wrap: break-word;
   display: flex;
