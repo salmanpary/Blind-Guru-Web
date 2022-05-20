@@ -2,6 +2,7 @@ import Footer from "@components/Footer";
 import Head from "next/head";
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
+import { useMemo} from 'react'
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -10,6 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from '@mui/icons-material/Pause';
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Router from "next/router";
 import ProtectedRoute from "components/ProtectedRoute";
@@ -19,13 +21,22 @@ import Logo from '../public/logo.svg'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import axios from "axios";
 import Speech from "speak-tts";
+
+
+const TweetEmbedder = React.memo(() => { return <TwitterTweetEmbed tweetId={"933354946111705097"} />}, () => true);
+
+
 function dashboard() {
   const [arr, setarr] = React.useState([]);
-  const [counter, setcounter] = React.useState(-1);
+  const [counter, setcounter] = React.useState(2);
   const [play, setplay] = React.useState(false);
   const[speech,setspeech]=React.useState(null)
-
-
+ 
+  console.log("speech")
+  React.useEffect(()=>{
+  setspeech(new Speech());
+  console.log(speech)
+  },[])
   const commands = [
     {
         command: 'start',
@@ -48,7 +59,10 @@ const {transcript,
 
 
   React.useEffect(() => {
+   
     axios.get("api/gettweets").then((res) => {
+     
+      console.log(res.data.data)
       setarr(res.data.data);
     });
   }, []);
@@ -59,11 +73,13 @@ const {transcript,
   }
   const previous = () => {
    // will throw an exception if not browser supported
-   
+  if(counter==-1){
+    return
+  }
 
     speech
       .speak({
-        text: arr[0].text,
+        text: arr[counter].text,
       })
       .then(() => {
         console.log("Success !");
@@ -71,15 +87,15 @@ const {transcript,
       .catch((e) => {
         console.error("An error occurred :", e);
       });
+      setcounter(counter-1)
   };
   const next = () => {
      // will throw an exception if not browser supported
-    console.log(speech)
-    console.log(speech.paused())
+    
 
     speech
       .speak({
-        text: arr[1].text,
+        text: arr[counter].text,
       })
       .then(() => {
         console.log("Success !");
@@ -87,15 +103,22 @@ const {transcript,
       .catch((e) => {
         console.error("An error occurred :", e);
       });
+      setcounter(counter+1)
   };
-  const pause = () => {
-
+  const pause = (event) => {
+    event.preventDefault()
+   
     if(!speech.paused()){
-    speech.pause();}
+    speech.pause();
+    setplay(true)
+  
+  }
     else{
       speech.resume()
+      setplay(false)
     }
   };
+  
   return (
     <ProtectedRoute>
       <div className="container">
@@ -109,7 +132,7 @@ const {transcript,
             <Image alt="Logo" src={Logo} />
 
             <div className="heading1">Dashboard</div>
-            <TwitterTweetEmbed tweetId={"933354946111705097"} />
+            <TweetEmbedder />
 
             <Card
               sx={{
@@ -143,11 +166,17 @@ const {transcript,
                     />
                   )}
                 </IconButton>
-                <IconButton aria-label="play/pause" onClick={pause}>
+               {play&&<IconButton aria-label="play/pause" onClick={pause}>
                   <PlayArrowIcon
                     sx={{ height: 60, width: 60, color: "#fff" }}
                   />
-                </IconButton>
+                </IconButton>}
+                {!play&&<IconButton aria-label="play/pause" onClick={pause}>
+                  <PauseIcon
+                    sx={{ height: 60, width: 60, color: "#fff" }}
+                  />
+                </IconButton>}
+                
                 <IconButton
                   aria-label="next"
                   sx={{ height: 45, width: 45, color: "#fff" }}
