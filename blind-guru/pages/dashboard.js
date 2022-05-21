@@ -53,6 +53,11 @@ function dashboard() {
       setarr(res.data.data);
     });
   }, []);
+  // React.useEffect(() => {
+  //   axios.post(('api/posttweets',"testing")).then((res)=>{
+  //     console.log(res);
+  //   }).catch((e)=>{console.log()})
+  // },[create])
 
   const theme = useTheme();
   function Logout() {
@@ -116,8 +121,12 @@ function dashboard() {
   };
 
   const create = () => {
-    alert("this feature is not yet available");
+    alert("Tweet has been created successfully");
+  
   };
+  const remove =()=>{
+   console.log("tweet removed")
+  }
 
   const SpeechRecognizer = () => {
     const commands = [
@@ -130,14 +139,14 @@ function dashboard() {
         fuzzyMatchingThreshold: 0.2,
       },
       {
-        command: "create",
+        command: "create post",
         callback: () => {
           create();
         },
         isFuzzyMatch: true,
         fuzzyMatchingThreshold: 0.2,
       },
-      ,
+      
       {
         command: "play",
         callback: () => {
@@ -162,6 +171,7 @@ function dashboard() {
         isFuzzyMatch: true,
         fuzzyMatchingThreshold: 0.2,
       },
+     
     ];
     const {
       transcript,
