@@ -83,7 +83,7 @@ function dashboard() {
       playFunction(counter);
     }
   };
-  const pause = (event) => {
+  const pause = () => {
     speech.pause();
     setplay(false);
   };
